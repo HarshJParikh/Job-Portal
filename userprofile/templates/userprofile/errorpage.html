@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="section">
+        <h1 class = "title has-text-centered">You can only apply once!</h1>
+        <div class="has-text-centered">
+            <a href = "{% url 'frontpage'%}" class="button is-success">Go to homepage</a>
+        </div>
+    </div>
+</div>
+<script>
+    var myobj = document.getElementById("navbar");
+    myobj.remove();
+</script>
+{% endblock %}

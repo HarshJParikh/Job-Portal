@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<section class="hero welcome is-small">
+    <div class="hero-body">
+        <div class="container" style="color: ghostwhite;">
+
+			<h1 class = "title has-text-centered">
+				{{ job.title }}
+			</h1>
+			<h2 class="subtitle has-text-centered">
+				{{ job.get_status_display }}
+			</h2>
+			<p class = "is-size-4">
+				{{ job.short_description }}
+			</p>
+
+			<p>{{ job.long_description }}</p>
+			<br>
+			<b>Company name: </b>{{ job.company_name }}<br>
+
+			{% if job.company_address %}
+				<b>Company address: </b>{{ job.company_address }}
+				<br>
+			{% endif %}
+			{% if job.company_zipcode %}
+				<b>Company zipcode: </b>{{ job.company_zipcode }}
+				<br>
+			{% endif %}
+			{% if job.company_place %}
+				<b>Company place: </b>{{ job.company_place }}
+				<br>
+			{% endif %}
+			{% if job.company_country %}
+				<b>Company country: </b>{{ job.company_country }}
+				<br>
+			{% endif %}
+
+			<b>Company size: </b>{{ job.get_company_size_display }}<br>
+
+			{% if job.status == 'active' %}
+				{% if userprofile.is_employer == False %}
+					<hr>
+					<a href = "{% url 'apply_for_job' job.id %}" class="button is-success">Apply for job</a>
+				{% else %}
+					<p></p>
+				{% endif %}
+			{% else %}
+				<p>This job is not available anymore!</p>
+			{% endif %}		
+		</div>
+	</div>
+</section>
+{% endblock %}

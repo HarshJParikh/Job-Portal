@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="container has-text-centered">
+    <div class="column is-4 is-offset-4">
+      <h3 class="title">
+        Registration
+      </h3>
+      <hr class="login-hr">
+      <div class="box">
+        <form method='post' action='.'>
+          {% csrf_token %}
+          <div class="control has-text-centered" style="margin-bottom:10px;">
+            <div class="select is-fullwidth is-medium">
+                <select name="account_type">
+                  <option value="jobseeker" selected>
+                    Job seeker
+                  </option>
+                  <option value="employer">
+                    Employer
+                  </option>
+                </select>
+              </div>
+          </div>
+          <span></span>
+          {% for field in form %}
+            <div class="field has-text-centered">
+              <div class="control">
+                {% render_field field class="form-control input is-medium" placeholder=field.label %}
+                {% if field.help_text %}
+                  <small>
+                    {{ field.help_text }}
+                  </small>
+                {% endif %}
+                {% for error in field.errors %}
+                <p style="color: red">
+                  {{ error }}
+                </p>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}  
+          <button class="button is-block is-info is-large is-fullwidth">
+            Sign up 
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

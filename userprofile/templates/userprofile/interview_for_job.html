@@ -1,0 +1,70 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+	<div class="container">
+		<h1 class="title has-text-centered">Questions</h1>
+		<h2 class="subtitle has-text-centered"><i>You can use our recoder, <a href = "{% url 'apply_interview' idapp.id %}">click here</a></i></h2>
+		<h2 class="subtitle is-12" style="border: 3px solid ghostwhite; padding: 10px; margin-top: auto;">
+			Instructions: 
+				<li>Only video file should be uploaded.</li>
+				<li>The maximum video length should be 3 minutes.</li>
+				<li>Make sure to be precise and clear.</li>
+		</h2>
+		<form method="post" action="." enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<div class="columns is-multiline">
+				<div class="column is-12 has-text-centered" style="margin-bottom: 10px;">
+					<div class="card large">
+						<div class="card-content">
+							<div class="media">
+								<div class="media-content">
+									<h1 class="title" style="color: black;">Tell us about yourself.</h1>
+									<input class="input is-fullwidth has-text-centered" type="file" name='vid1' id="id_vid1"></input>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+
+				<div class="column is-12 has-text-centered" style="margin-bottom: 10px;">
+					<div class="card large">
+						<div class="card-content">
+							<div class="media">
+								<div class="media-content">
+									<h1 class="title" style="color: black;">Why did you decide to apply for this role?</h1>
+									<input class="input is-fullwidth" type="file" name='vid2' id="id_vid2"></input>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="column is-12 has-text-centered">
+					<div class="card large">
+						<div class="card-content">
+							<div class="media">
+								<div class="media-content">
+									<h1 class="title" style="color: black;">Why do you think you are good fit for this role?</h1>
+									<input class="input is-fullwidth" type="file" name='vid3' id="id_vid3"></input>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="column is-12 has-text-centered">
+					<div class="card large">
+						<div class="card-content">
+							<div class="media">
+								<div class="media-content">
+									<button class="button is-success">Submit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+{% endblock %}

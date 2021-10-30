@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+	<section class="hero welcome is-small">
+		<div class="container has-text-centered">
+			<h1 class="title">Dashboard</h1>
+			{% if userprofile.is_employer %}
+				{% for job in request.user.jobs.all %}
+					<div class="job">
+						<a href="{% url 'view_dashboard_job' job.id %}"><strong>{{ job.title }} (Status - {{ job.get_status_display }})</strong></a>
+						<br>
+					</div>
+				{% empty %}
+					<p style="color: ghostwhite;">You don't have any jobs yet...</p>
+					<br>
+				{% endfor %}
+				<br>
+				<a href="{% url 'add_job' %}" class="button is-success">Add job</a>			
+			{% else %}
+				<h2 class="subtitle" style="color: ghostwhite;">Applications</h2>
+				
+				{% for application in request.user.applications.all %}
+					<div class="application">
+						<a href="{% url 'view_application' application.id %}">{{ application.job.title }}</a>
+					</div>
+				{% empty %}
+					<p style="color: ghostwhite;">You haven't applied for any jobs yet...</p>
+				{% endfor %}			
+			{% endif %}	
+		</div>
+	</section>	
+{% endblock %}

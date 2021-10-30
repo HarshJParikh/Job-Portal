@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container" style="color: ghostwhite;">
+    <h1 class="title has-text-centered">View application - {{ application.job.title }}</h1>
+    <h2 class="subtitle has-text-centered">{{ application.created_at }}</h2>
+    <p class="has-text-centered"><strong style="color: ghostwhite;">Content: </strong><br>{{ application.content }}</p>
+    <br>
+    <p class="has-text-centered"><strong style="color: ghostwhite;">Experience: </strong><br>{{ application.experience }}</p>
+
+    {% if userprofile.is_employer == False %}
+        <hr>
+        <div class="has-text-centered">
+            <a href = "{% url 'interview_for_job' application.id %}" class="button is-success">Apply for interview</a>
+        </div>
+        <hr>
+    {% else %}
+        <br>
+        <p class="has-text-centered"><strong style="color: ghostwhite;">Resume: </strong><br><a href={{application.resume.url}} target="_blank">View Resume</a></p>
+        <p class="has-text-centered"><strong style="color: ghostwhite;"><br>Interview videos: </strong><br><a href={{interview.vid1.url}} target="_blank">View Video</a></p>
+        <p class="has-text-centered"><strong style="color: ghostwhite;"></strong><a href={{interview.vid2.url}} target="_blank">View Video</a></p>
+        <p class="has-text-centered"><strong style="color: ghostwhite;"></strong><a href={{interview.vid3.url}} target="_blank">View Video</a></p>
+        <hr>
+    {% endif %}
+
+    <h2 class="subtitle"><strong style="color: ghostwhite;">Conversation</strong></h2>
+
+    {% for message in application.conversationmessages.all %}
+        <div class="notification" style="background-color:#103c6b;">
+            <b style="font-size: large;">{{ message.created_by.username }}</b><br>
+            {{ message.content }} <p class="has-text-right"><i>{{ message.created_at|timesince }} ago</i></p>
+        </div>
+    {% empty %}
+        <p>No messages yet...</p>
+        <br>
+    {% endfor %}
+    
+    <form method="post" action=".">
+        {% csrf_token %}
+
+        <div class="field">
+            <div class="control">
+                <textarea class="textarea" placeholder="Enter your message here" name="content" id="id_content"></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button class="button is-success">Send</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

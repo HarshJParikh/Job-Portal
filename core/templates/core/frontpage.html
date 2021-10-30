@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h1 class = "title has-text-centered">Newest jobs</h1>
+<div class="container">
+	<div class="section">	
+		<div class = "columns is-multiline"> 
+			{% for job in jobs %}
+				<div class = "column is-4 has-text-centered">
+					<div class="card">
+						<div class = "card-content">
+							<div class="media">
+								<div class="media-content">
+									<p class = "title is-4" style="color: black;">
+										{{ job.title }}
+									</p>
+									<p class = "subtitle is-6" style="color: black;">
+										{{ job.company_name }}<br>
+										{{ job.created_at }}
+									</p>
+								</div>
+							</div>
+
+							<div class="content">
+								<p class = "has-text-left">
+									{{ job.short_description }}
+								</p>
+								<hr>
+								<a href = "{% url 'job_detail' job.id %}">View</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>	
+	</div>
+</div>						
+{% endblock %}

@@ -1,0 +1,40 @@
+/*-------------NAVBAR STARTS------------*/
+
+.navbar {
+    background-color: #041221;
+}
+.navbar-item {
+    color: ghostwhite;
+}
+#navMenu {
+    background-color: #041221;
+}
+#navbartitle {
+    font-size: 20px !important;
+}
+img {
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}
+
+/*-------------NAVBAR ENDS------------*/
+
+body {
+    background-color: #092644;
+}
+
+.title {
+    color: ghostwhite;
+}
+.subtitle {
+    color: ghostwhite;
+}
+small {
+    color: gray;
+}
+label {
+    color: ghostwhite;
+}
+.notification {
+    background-color: #103c6b;
+}

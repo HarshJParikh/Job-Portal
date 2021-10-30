@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCSTRING html>
+<html>
+	<head>
+		<!---------------------Meta Tags---------------------->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+		<!---------------------Links-------------------------->
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link rel='stylesheet' href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/vue@next"></script>
+		<script src="{% static 'js/main.js' %}"></script>
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" />
+
+		<title>Job Portal</title>
+
+	</head>
+
+	<body>	
+		{% include 'core/navbar.html'%}
+		
+		<section class="section">
+			{% block content %}
+			{% endblock %}
+		</section>
+	</body>
+</html>		
